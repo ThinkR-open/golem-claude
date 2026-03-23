@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:engineering-shiny.org)",
+      "Bash(Rscript -e \"golem::create_golem\\('examples/gpxviz', package_name = 'gpxviz', open = FALSE\\)\" 2>&1)",
+      "Bash(Rscript -e \":*)",
+      "Bash(Rscript -e \"\nusethis::use_package\\('sf'\\)\nusethis::use_package\\('leaflet'\\)\nusethis::use_package\\('leaflet.extras'\\)\n\" 2>&1)",
+      "Bash(Rscript -e \"\ndesc::desc_del_dep\\('leaflet.extras'\\)\n\" 2>&1)",
+      "Bash(Rscript -e \"devtools::document\\(\\)\" 2>&1)",
+      "Bash(Rscript -e \"devtools::test\\(\\)\" 2>&1)",
+      "Bash(Rscript -e \"usethis::use_package\\('withr', type = 'Suggests'\\)\" 2>&1)",
+      "Bash(Rscript -e \"golem::run_dev\\(\\)\" 2>&1)",
+      "Bash(Rscript -e \"golem::create_golem\\(path = 'examples/gpxviz', package_name = 'gpxviz', open = FALSE\\)\")",
+      "Bash(Rscript -e \"golem::add_module\\(''gpx_upload'', with_test = TRUE, open = FALSE\\)\")",
+      "Bash(Rscript -e \"golem::add_module\\(''gpx_map'', with_test = TRUE, open = FALSE\\)\")",
+      "Bash(Rscript -e \"golem::add_fct\\(''read_gpx'', with_test = TRUE, open = FALSE\\)\")",
+      "Bash(Rscript -e \"golem::add_fct\\(''plot_gpx'', with_test = TRUE, open = FALSE\\)\")",
+      "Bash(Rscript -e \"usethis::use_package\\('sf'\\); usethis::use_package\\('ggplot2'\\); usethis::use_package\\('shinyjs'\\)\")"
+    ]
+  }
+}
