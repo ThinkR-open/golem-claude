@@ -1,10 +1,30 @@
 # Golem Shiny App — Development Rules
 
+## Key commands
+
+```r
+# To launch the shiny application
+Rscript -e "golem::run_dev()"
+
+# To run the tests
+Rscript -e "devtools::test()"
+
+# To check the package
+Rscript -e "devtools::check()"
+
+# To redocument the package
+Rscript -e "devtools::document()"
+
+# To format code
+air format .
+```
+
 ## Creation of a golem app
 
 - The first thing to do when asked to create a golem app is to run the `golem::create_golem()` function with the name of the app.
+- The name of the app should either be the basename of the folder (i.e example/gpxviewer is "gpxviewer"), or the one provided by the user.
 - The output directory should contain the same structure as the template in golem.
-- Never create the folder yourself, 
+- Never create the folder yourself,
 
 ## Project Structure
 
