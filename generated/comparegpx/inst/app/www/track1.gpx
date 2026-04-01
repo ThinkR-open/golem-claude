@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="comparegpx-sample" xmlns="http://www.topografix.com/GPX/1/1">
+  <trk>
+    <name>Track 1 - Morning Run</name>
+    <trkseg>
+      <trkpt lat="48.8640" lon="2.2880"><ele>35</ele><time>2024-06-01T07:00:00Z</time></trkpt>
+      <trkpt lat="48.8640" lon="2.2900"><ele>34</ele><time>2024-06-01T07:01:00Z</time></trkpt>
+      <trkpt lat="48.8640" lon="2.2920"><ele>34</ele><time>2024-06-01T07:02:00Z</time></trkpt>
+      <trkpt lat="48.8640" lon="2.2940"><ele>35</ele><time>2024-06-01T07:03:00Z</time></trkpt>
+      <trkpt lat="48.8640" lon="2.2960"><ele>35</ele><time>2024-06-01T07:04:00Z</time></trkpt>
+      <trkpt lat="48.8640" lon="2.2980"><ele>36</ele><time>2024-06-01T07:05:00Z</time></trkpt>
+      <trkpt lat="48.8640" lon="2.3000"><ele>36</ele><time>2024-06-01T07:06:00Z</time></trkpt>
+      <trkpt lat="48.8625" lon="2.3000"><ele>35</ele><time>2024-06-01T07:07:00Z</time></trkpt>
+      <trkpt lat="48.8610" lon="2.3000"><ele>35</ele><time>2024-06-01T07:08:00Z</time></trkpt>
+      <trkpt lat="48.8595" lon="2.3000"><ele>34</ele><time>2024-06-01T07:09:00Z</time></trkpt>
+      <trkpt lat="48.8580" lon="2.3000"><ele>34</ele><time>2024-06-01T07:10:00Z</time></trkpt>
+      <trkpt lat="48.8565" lon="2.3000"><ele>33</ele><time>2024-06-01T07:11:00Z</time></trkpt>
+      <trkpt lat="48.8560" lon="2.3000"><ele>33</ele><time>2024-06-01T07:12:00Z</time></trkpt>
+      <trkpt lat="48.8560" lon="2.2980"><ele>33</ele><time>2024-06-01T07:13:00Z</time></trkpt>
+      <trkpt lat="48.8560" lon="2.2960"><ele>33</ele><time>2024-06-01T07:14:00Z</time></trkpt>
+      <trkpt lat="48.8560" lon="2.2940"><ele>34</ele><time>2024-06-01T07:15:00Z</time></trkpt>
+      <trkpt lat="48.8560" lon="2.2920"><ele>34</ele><time>2024-06-01T07:16:00Z</time></trkpt>
+      <trkpt lat="48.8560" lon="2.2900"><ele>34</ele><time>2024-06-01T07:17:00Z</time></trkpt>
+      <trkpt lat="48.8560" lon="2.2880"><ele>35</ele><time>2024-06-01T07:18:00Z</time></trkpt>
+      <trkpt lat="48.8575" lon="2.2880"><ele>35</ele><time>2024-06-01T07:19:00Z</time></trkpt>
+      <trkpt lat="48.8590" lon="2.2880"><ele>35</ele><time>2024-06-01T07:20:00Z</time></trkpt>
+      <trkpt lat="48.8605" lon="2.2880"><ele>35</ele><time>2024-06-01T07:21:00Z</time></trkpt>
+      <trkpt lat="48.8620" lon="2.2880"><ele>35</ele><time>2024-06-01T07:22:00Z</time></trkpt>
+      <trkpt lat="48.8640" lon="2.2880"><ele>35</ele><time>2024-06-01T07:23:00Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

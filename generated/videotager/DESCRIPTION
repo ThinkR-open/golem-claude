@@ -1,0 +1,31 @@
+Package: videotager
+Title: Tag and Find Videos in Local Folders
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "firstname",
+           family = "lastname",
+           role = c("aut", "cre"),
+           email = "your@email.com")
+Description: A Shiny application to tag videos in local folders and retrieve
+    them later using tags. Uses an SQLite database for persistence across
+    sessions.
+License: MIT + file LICENSE
+Imports:
+    bslib,
+    config,
+    DBI,
+    DT,
+    fs,
+    golem,
+    RSQLite,
+    shiny,
+    shinyjs,
+    tcltk,
+    withr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.3
+Roxygen: list(markdown = TRUE)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

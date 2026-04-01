@@ -25,6 +25,7 @@ air format .
 - The name of the app should either be the basename of the folder (i.e example/gpxviewer is "gpxviewer"), or the one provided by the user.
 - The output directory should contain the same structure as the template in golem.
 - Never create the folder yourself,
+- When you have finished creating the application, invite the user to move to the folder (if they are not already in it) and to run `golem::run_dev()` in their R console.
 
 ## Project Structure
 

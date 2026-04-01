@@ -1,0 +1,47 @@
+/* Video Tagger — custom styles */
+
+/* Make the landing page vertically centred */
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Subtle card hover for video rows */
+.table-hover tbody tr:hover {
+  background-color: rgba(44, 123, 229, 0.06);
+  cursor: pointer;
+}
+
+/* Selected DT row colour */
+table.dataTable tbody tr.selected,
+table.dataTable tbody tr.selected td {
+  background-color: rgba(44, 123, 229, 0.15) !important;
+  color: inherit;
+}
+
+/* Video player */
+video {
+  border-radius: 6px;
+  background: #000;
+}
+
+/* Tag badges inside the table */
+.badge-tag {
+  background-color: #e8f4f8;
+  color: #2c7be5;
+  border: 1px solid #c5dff6;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.78em;
+  margin: 1px 2px;
+  display: inline-block;
+}
+
+/* Input group fix for side-by-side text + button */
+.input-group .form-group {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.input-group .shiny-input-container {
+  width: 100%;
+}

@@ -6,30 +6,52 @@ For now, this is a work in progress.
 
 The examples in the `/examples` folder has been generated using the following prompts:
 
-### GPS visualize
+### GPS compare
 
 Prompt:
 
 ```
-Using the good practices defined in `claude.md`, create the following golem application:
+Using the good practices defined in the current directory with `claude.md`, create the following golem application:
 
-- One module that will read a GPX file that is uploaded, or take an example one in the app
-- One module that will display a graph of the GPX file on a ggplot2 map
+- One module that will read two GPX files that can either be uploaded, or (by default) use two GPX that are almost the same.
+- One module that will display a graph of the GPX files on a leaflet map, allowing the user to compare the GPX. The leaflet should have no licence error when displaying the tiles.
+- The user can select a color for each GPX
+- The user can reverse the GPX
+- One module will give a percentage of closeness between the two GPX
 
-Create this app in a folder called examples/gpxviz.
+The design should be a bslib dashboard. Keep the colors simple and readable.
+
+Create this app in a folder called generated/comparegpx
 ```
 
-Claude output:
+### Video organizer
+
+Prompt:
 
 ```
-⏺ All 19 tests pass. Here's what was created in examples/gpxviz:
+Using the good practices defined in the current directory with `claude.md`, create the following golem application:
 
-  Structure:
-  - R/fct_read_gpx.R — read_gpx(path): reads a GPX file via sf::st_read(), returns an sf object of track points
-  - R/fct_plot_gpx.R — plot_gpx(track_data): converts track points to a linestring and plots it with ggplot2::geom_sf(), marking start (green) and end (red)
-  - R/mod_gpx_upload.R — UI: radio buttons (example/upload) + conditional fileInput + "Load GPX" button; Server: on click, reads the chosen file and writes to gpx_storage$data
-  - R/mod_gpx_map.R — UI: plotOutput; Server: renders plot_gpx() whenever gpx_storage$data is non-NULL
-  - R/app_server.R — creates the shared gpx_storage <- reactiveValues() pre-loaded with the example track, wires up both module servers
-  - R/app_ui.R — sidebarLayout with the upload module on the left, map module on the right
-  - inst/extdata/example.gpx — a 20-point example track along the Seine in Paris (Eiffel Tower → Notre Dame area)
+The application should be used to tag video inside a given folder, and then find back the video later on.
+
+When the user connecct, they can either open a folder on their computer, or select one that they have previously worked in.
+
+When the folder is selected, the user now has the following tabs:
+
+- One to search for videos using a given tag or series of tags
+  - The user can search using a textbox with free text
+  - The user can select one or more tags to filter the video
+  - The user can preview the video
+  - The user can order the videos by date, size or name, something that looks like a mac / windows finder
+  - The user can show the video in the enclosing folder, i.e. it open the folder on their laptop at the specified location
+- One to tag videos from the folder
+  - The user can manually add a new tag using free text, where the tags are separated by a comma
+  - The user can add an existing tag
+  - The user can remove an existing tag from a video
+- One tab to export or import the sqlite db file.
+
+The application should have a memory. Use an sqlite db to keep the information from one session to the other.
+
+Use bslib, and make the application modern and user friendly.
+
+Create this app in a folder called generated/videotager
 ```
