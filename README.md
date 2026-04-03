@@ -1,57 +1,503 @@
-## Tools to build shiny apps with Claude & golem
+# Golem Claude — Build Shiny Apps with Claude Code
 
-For now, this is a work in progress.
+Tools and Claude Code plugin for building professional Shiny applications using the [golem](https://thinkr-open.github.io/golem/) framework.
 
-## Examples
+## Overview
 
-The examples in the `/examples` folder has been generated using the following prompts:
+This repository provides:
+- A **Claude Code plugin** with 6 skills for golem development
+- **Best practice guidelines** for Shiny app development  
+- **Example applications** built with golem and Claude
+- **Complete documentation** for development workflows
 
-### GPS compare
+## Quick Start
 
-Prompt:
+### Installation
 
-```
-Using the good practices defined in the current directory with `claude.md`, create the following golem application:
-
-- One module that will read two GPX files that can either be uploaded, or (by default) use two GPX that are almost the same.
-- One module that will display a graph of the GPX files on a leaflet map, allowing the user to compare the GPX. The leaflet should have no licence error when displaying the tiles.
-- The user can select a color for each GPX
-- The user can reverse the GPX
-- One module will give a percentage of closeness between the two GPX
-
-The design should be a bslib dashboard. Keep the colors simple and readable.
-
-Create this app in a folder called generated/comparegpx
-```
-
-### Video organizer
-
-Prompt:
+Install the plugin in Claude Code:
 
 ```
-Using the good practices defined in the current directory with `claude.md`, create the following golem application:
-
-The application should be used to tag video inside a given folder, and then find back the video later on.
-
-When the user connecct, they can either open a folder on their computer, or select one that they have previously worked in.
-
-When the folder is selected, the user now has the following tabs:
-
-- One to search for videos using a given tag or series of tags
-  - The user can search using a textbox with free text
-  - The user can select one or more tags to filter the video
-  - The user can preview the video
-  - The user can order the videos by date, size or name, something that looks like a mac / windows finder
-  - The user can show the video in the enclosing folder, i.e. it open the folder on their laptop at the specified location
-- One to tag videos from the folder
-  - The user can manually add a new tag using free text, where the tags are separated by a comma
-  - The user can add an existing tag
-  - The user can remove an existing tag from a video
-- One tab to export or import the sqlite db file.
-
-The application should have a memory. Use an sqlite db to keep the information from one session to the other.
-
-Use bslib, and make the application modern and user friendly.
-
-Create this app in a folder called generated/videotager
+/plugin install https://github.com/thinkr-open/golem-claude
 ```
+
+Or locally clone and reference:
+
+```bash
+git clone https://github.com/thinkr-open/golem-claude.git
+cd golem-claude
+```
+
+### First Steps
+
+1. Ask Claude to create a new golem app:
+   ```
+   Create a golem Shiny application for [your use case]
+   ```
+
+2. Claude will create the app structure following all best practices
+
+3. Launch and develop:
+   ```r
+   Rscript -e "golem::run_dev()"
+   ```
+
+## Prerequisites
+
+- Claude Code (desktop, web, or CLI)
+- R 4.0 or higher
+- golem: `install.packages("golem")`
+- devtools: `install.packages("devtools")`
+
+## Available Skills
+
+Once installed, you have access to 6 Claude Code skills:
+
+### 1. Create Golem App
+Initialize a new golem Shiny application with proper structure.
+
+```
+Create a golem Shiny app for [purpose]
+```
+
+Creates:
+- R package structure with R/, tests/, dev/, inst/app/www/
+- DESCRIPTION, NAMESPACE, and configuration files
+- Git repository
+- All golem conventions
+
+### 2. Add Module
+Create reusable Shiny modules with UI and server logic.
+
+```
+Add a module called [name] to handle [functionality]
+```
+
+Creates:
+- `R/mod_<name>.R` with UI and server functions
+- `tests/testthat/test-mod_<name>.R` test file
+- Follows module namespacing best practices
+
+**Example:**
+```
+Add a module called "settings" that allows users to configure the app
+with toggles for theme, language, and notifications.
+```
+
+### 3. Add Function
+Add business logic functions or utilities.
+
+```
+Add a [factory/utility] function for [purpose]
+```
+
+Creates:
+- `R/fct_<name>.R` for factory functions (business logic)
+- Or `R/utils_<name>.R` for utility functions
+- With roxygen2 documentation
+- Associated test file
+
+**Example:**
+```
+Add a factory function to parse and validate CSV files
+```
+
+### 4. Check App
+Validate your package structure, documentation, and dependencies.
+
+```
+Check my golem app
+```
+
+Runs `devtools::check()` and catches:
+- Undocumented functions
+- Missing imports
+- Namespace conflicts
+- Dependency issues
+
+### 5. Run Tests
+Execute your test suite.
+
+```
+Run the tests for my app
+```
+
+Runs all tests in `tests/testthat/` and shows coverage.
+
+### 6. Check for Missing ns()
+Validate that all module input/output IDs are properly namespaced.
+
+```
+Check my modules for missing ns()
+```
+
+Scans `mod_*.R` files and ensures all IDs are wrapped in `ns()` to prevent conflicts when modules are reused.
+
+## Complete Workflow Example
+
+Here's a typical development workflow:
+
+### Step 1: Create the app
+```
+Create a golem Shiny app for managing project timesheets.
+It should have:
+- A module to add time entries
+- A module to view timesheet summary
+- Categorize entries by project
+- Persist data in SQLite
+```
+
+### Step 2: Add modules
+```
+Add a module called "timesheet_form" with:
+- Date picker
+- Duration input (hours)
+- Project dropdown
+- Category selection
+- Notes textarea
+- Submit and clear buttons
+```
+
+```
+Add a module called "timesheet_summary" that displays:
+- Total hours by project
+- Total hours by category
+- Weekly overview chart
+- Export to CSV button
+```
+
+### Step 3: Add functions
+```
+Add a factory function to handle database operations:
+- Save new timesheet entry
+- Fetch timesheet entries (with filtering)
+- Update entry
+- Delete entry
+- Calculate totals by project and category
+```
+
+### Step 4: Test
+```
+Run the tests for my app
+```
+
+### Step 5: Validate
+```
+Check my golem app for any issues
+```
+
+### Step 6: Launch
+```r
+Rscript -e "golem::run_dev()"
+```
+
+## Key Commands
+
+Once you have a golem app:
+
+```r
+# Launch the app
+Rscript -e "golem::run_dev()"
+
+# Run tests
+Rscript -e "devtools::test()"
+
+# Check package
+Rscript -e "devtools::check()"
+
+# Regenerate documentation
+Rscript -e "devtools::document()"
+
+# Format code
+air format .
+```
+
+## Project Structure
+
+After creating a golem app, you'll have:
+
+```
+myapp/
+├── R/                      # Package code (flat structure)
+├── tests/testthat/        # Tests and fixtures
+├── inst/app/www/          # Static assets (CSS, JS, images)
+├── dev/                   # Development scripts
+├── data-raw/              # Data creation scripts
+├── DESCRIPTION            # Package metadata
+├── NAMESPACE              # Generated by devtools::document()
+├── golem-config.yml       # Configuration
+└── .Rbuildignore         # Files to exclude from package
+```
+
+## File Naming Conventions
+
+| Type | Pattern | Example |
+|------|---------|---------|
+| Modules | `R/mod_<name>.R` | `R/mod_gpx_reader.R` |
+| Module functions | `R/mod_<name>_fct_<fn>.R` | `R/mod_gpx_reader_fct_parse.R` |
+| Module utilities | `R/mod_<name>_utils_<fn>.R` | `R/mod_gpx_reader_utils_validate.R` |
+| Factory functions | `R/fct_<name>.R` | `R/fct_similarity_calc.R` |
+| Utilities | `R/utils_<name>.R` | `R/utils_formats.R` |
+| Tests | Mirror R/ | `tests/testthat/test-mod_gpx_reader.R` |
+
+## Communication Tips
+
+### Be Specific
+❌ "Add a module"  
+✅ "Add a module for uploading CSV files that validates the structure and previews the data"
+
+### Provide Context
+❌ "Add a function"  
+✅ "Add a factory function to calculate project budgets. It should sum expenses by category and compare against allocated budget"
+
+### Ask for Examples
+✅ "Add a factory function with @examples showing how to use it"
+
+## Best Practices
+
+### Reactive Programming
+```r
+# Use reactiveValues() for state
+local_rv <- reactiveValues(value = NULL)
+
+# Use observeEvent() to respond to changes
+observeEvent(input$submit, {
+  local_rv$value <- compute(input$data)
+})
+
+# Always put reactive values inside a reactive consumer
+output$plot <- renderPlot({
+  plot(local_rv$value)
+})
+```
+
+### Module Communication
+When modules need to share data, pass a shared `reactiveValues()` object:
+
+```r
+shared_data <- reactiveValues(
+  gpx_files = NULL,
+  selected_gpx = NULL
+)
+
+mod_gpx_reader_server("reader", shared_data)
+mod_map_display_server("map", shared_data)
+```
+
+### Module Namespacing
+Always wrap input/output IDs in `ns()`:
+
+```r
+mod_example_ui <- function(id) {
+  ns <- NS(id)
+  tagList(
+    selectInput(ns("type"), "Type", choices = c("A", "B")),
+    plotOutput(ns("plot"))
+  )
+}
+```
+
+## Working with CLAUDE.md
+
+This repository includes detailed development rules in `CLAUDE.md`. Claude follows these rules automatically when:
+- Creating modules and functions
+- Writing tests
+- Documenting code
+- Organizing the project structure
+
+Key rules:
+- Keep `R/` folder flat (no subfolders)
+- All exported functions need roxygen2 comments
+- Use `devtools::document()` after documentation changes
+- Use `observeEvent()` never `observe()`
+- Use `reactiveValues()` never `reactive()`
+- Aim for high test coverage
+
+## Example Applications
+
+See `/generated` folder for complete working examples:
+
+### comparegpx
+A GPS file comparison tool:
+- Upload or use example GPX files
+- Compare tracks on an interactive map
+- Calculate similarity scores
+- Select colors and reverse GPX files
+
+To run:
+```bash
+cd generated/comparegpx
+Rscript -e "golem::run_dev()"
+```
+
+## Configuration Management
+
+### Environment-Specific Configuration
+
+Use `golem-config.yml` for environment-specific values:
+
+```yaml
+default:
+  db_path: "local.db"
+  api_url: "http://localhost:3000"
+
+production:
+  db_path: "/var/data/app.db"
+  api_url: "https://api.example.com"
+```
+
+Access in code:
+```r
+api_url <- golem::get_golem_config("api_url")
+```
+
+### Runtime Configuration
+
+Pass values when running:
+```r
+golem::run_dev(custom_param = "value")
+```
+
+Access with:
+```r
+param <- golem::get_golem_options("custom_param")
+```
+
+## Troubleshooting
+
+### Plugin doesn't appear in Claude Code
+
+**Solutions:**
+1. Verify JSON syntax in `marketplace.json` and `plugin.json`
+2. Check file paths are correct
+3. Restart Claude Code
+4. Verify you have read permissions
+
+### Skills not available
+
+**Solutions:**
+1. Check skill files exist in `plugins/golem-plugin/skills/`
+2. Verify skill IDs in `plugin.json` match file names
+3. Check for typos in file names
+4. Ensure markdown formatting is correct
+
+### "Cannot find golem" errors
+
+**Solutions:**
+1. Install: `install.packages("golem")`
+2. Install: `install.packages("devtools")`
+3. Verify R is in PATH: `which R`
+4. Check version: `R --version`
+
+### Tests failing after creating app
+
+**Ask Claude:**
+```
+These tests are failing: [test names]. What's wrong?
+```
+
+Claude will diagnose and fix the issues.
+
+### Module IDs not working
+
+**Ask Claude:**
+```
+Check my modules for missing ns()
+```
+
+This validates all IDs are properly namespaced.
+
+## Documentation
+
+Complete documentation is in this README and:
+
+- **`CLAUDE.md`** — Project-specific rules and conventions
+
+## Resources
+
+- [Golem Documentation](https://thinkr-open.github.io/golem/)
+- [R Packages Book](https://r-pkgs.org/)
+- [Shiny Guide](https://shiny.rstudio.com/)
+- [Mastering Shiny](https://mastering-shiny.org/)
+- [Tidyverse Style Guide](https://style.tidyverse.org/)
+
+## Security
+
+- Never hardcode credentials
+- Use environment variables for secrets
+- Validate all user inputs
+- Use parameterized queries for databases
+- Escape HTML to prevent XSS
+
+## Version Control
+
+After creating/modifying with Claude:
+
+```bash
+git add -A
+git commit -m "feat: add [module/function name]"
+git push
+```
+
+Before major releases:
+```r
+Rscript -e "devtools::check()"  # Should have 0 errors
+Rscript -e "devtools::test()"   # All tests should pass
+```
+
+## Plugin Configuration
+
+The plugin is configured in two files:
+
+### `.claude-plugin/marketplace.json`
+Plugin registry and metadata
+
+### `plugins/golem-plugin/plugin.json`
+Skill definitions with IDs, names, and descriptions
+
+### Adding New Skills
+
+1. Create new file in `plugins/golem-plugin/skills/name.md`
+2. Add skill definition to `plugin.json`
+3. Update documentation as needed
+
+## Getting Help
+
+**General questions:**
+- Check this README for documentation
+- See `CLAUDE.md` for project rules
+- Check `generated/comparegpx/` for working examples
+
+**In conversation with Claude:**
+```
+I'm confused about how modules communicate in golem. Can you explain?
+```
+
+```
+What's the difference between a factory function and a utility function?
+```
+
+```
+How do I test reactive code in a module?
+```
+
+Claude will provide detailed explanations following the plugin guidelines.
+
+## Next Steps
+
+1. ✅ Install the plugin
+2. 📝 Create your first golem app with Claude
+3. 🏗️ Build modules and functions
+4. ✔️ Test and validate your app
+5. 🚀 Deploy your application
+
+**Start building:**
+
+```
+Create a golem Shiny application for [your use case]
+```
+
+---
+
+Built by [ThinkR](https://thinkr.fr) for professional Shiny development with Claude Code.
+
+For issues, see [Golem GitHub](https://github.com/ThinkR-open/golem) or reach out to the Shiny community.

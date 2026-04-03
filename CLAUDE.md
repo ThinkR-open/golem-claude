@@ -1,4 +1,25 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+<!-- CUSTOMIZE HERE -->
+
+## Description
+
+<Insert here the description of your application in details>
+
+## Architecture
+
+<Describe the target architecture>
+
+<!-- STOP CUSTOMIZE -->
+
 # Golem Shiny App — Development Rules
+
+# init
+
+Read the Project Overview section in CLAUDE.md, then build the golem app
+following all the rules defined in this file.
 
 ## Key commands
 
@@ -18,6 +39,11 @@ Rscript -e "devtools::document()"
 # To format code
 air format .
 ```
+
+## Communication
+
+- Whenever you have finished a change, invite the user to launch the app with `golem::run_dev()`
+- Do not suggest `source("dev/run_dev.R")` or `pkgload::load_all();run_app()`
 
 ## Creation of a golem app
 
@@ -78,6 +104,30 @@ Whenever you can, update the test files to test the modules and the fct & utils 
 
 - ALWAYS use `observeEvent()` — NEVER use `observe()`.
 - ALWAYS use `reactiveValues()` — NEVER use `reactive()` or `reactiveVal()`.
+- ALWAYS put reactive value inside a reactive consumer.
+
+Correct:
+
+```
+local_rv <- reactiveValues(
+  a = NULL
+)
+observeEvent(
+  input$a, {
+    local_rv$a <- input$a
+  }
+)
+```
+
+Bad:
+
+```
+local_rv <- reactiveValues(
+  a = NULL
+)
+local_rv$a <- input$a
+```
+
 - Avoid `renderUI()` + `uiOutput()` as much as you can. Only use it if there are no other options.
   - Prefer `update*()` functions (e.g. `updateSelectInput()`).
   - Prefer JS-side show/hide over server-side UI regeneration.

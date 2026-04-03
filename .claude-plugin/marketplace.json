@@ -1,0 +1,17 @@
+{
+	"name": "golem-claude",
+	"owner": {
+		"name": "ThinkR"
+	},
+	"metadata": {
+		"description": "Claude Code skills for golem Shiny apps",
+		"pluginRoot": "./plugins"
+	},
+	"plugins": [
+		{
+			"name": "golem-plugin",
+			"source": "./plugins/golem-plugin",
+			"description": "Skills and commands for building golem Shiny applications"
+		}
+	]
+}

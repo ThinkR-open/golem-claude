@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(Rscript:*)",
-      "Bash(grep -v \"^──\\\\|^ℹ\\\\|\\\\\\\\.Rprofile\\\\|Setting up\\\\|^$\")"
-    ]
-  }
-}

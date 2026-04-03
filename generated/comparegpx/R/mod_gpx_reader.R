@@ -50,35 +50,61 @@ mod_gpx_reader_server <- function(id, track_storage) {
     )
 
     # Initialise shared storage with default tracks
-    track_storage$track1 <- local_rv$raw_track1
-    track_storage$track2 <- local_rv$raw_track2
+    observe({
+      track_storage$track1 <- local_rv$raw_track1
+      track_storage$track2 <- local_rv$raw_track2
+    })
 
     # ---- File uploads ---------------------------------------------------
 
     observeEvent(input$file1, {
       local_rv$raw_track1 <- parse_gpx(input$file1$datapath)
       df <- local_rv$raw_track1
-      track_storage$track1 <- if (isTRUE(input$reverse1)) df[nrow(df):1L, ] else df
+      track_storage$track1 <- if (isTRUE(input$reverse1)) {
+        df[nrow(df):1L, ]
+      } else {
+        df
+      }
     })
 
     observeEvent(input$file2, {
       local_rv$raw_track2 <- parse_gpx(input$file2$datapath)
       df <- local_rv$raw_track2
-      track_storage$track2 <- if (isTRUE(input$reverse2)) df[nrow(df):1L, ] else df
+      track_storage$track2 <- if (isTRUE(input$reverse2)) {
+        df[nrow(df):1L, ]
+      } else {
+        df
+      }
     })
 
     # ---- Reverse toggles ------------------------------------------------
 
-    observeEvent(input$reverse1, {
-      req(!is.null(local_rv$raw_track1))
-      df <- local_rv$raw_track1
-      track_storage$track1 <- if (isTRUE(input$reverse1)) df[nrow(df):1L, ] else df
-    }, ignoreInit = TRUE)
+    observeEvent(
+      input$reverse1,
+      {
+        req(!is.null(local_rv$raw_track1))
+        df <- local_rv$raw_track1
+        track_storage$track1 <- if (isTRUE(input$reverse1)) {
+          df[nrow(df):1L, ]
+        } else {
+          df
+        }
+      },
+      ignoreInit = TRUE
+    )
 
-    observeEvent(input$reverse2, {
-      req(!is.null(local_rv$raw_track2))
-      df <- local_rv$raw_track2
-      track_storage$track2 <- if (isTRUE(input$reverse2)) df[nrow(df):1L, ] else df
-    }, ignoreInit = TRUE)
+    observeEvent(
+      input$reverse2,
+      {
+        req(!is.null(local_rv$raw_track2))
+        df <- local_rv$raw_track2
+        track_storage$track2 <- if (isTRUE(input$reverse2)) {
+          df[nrow(df):1L, ]
+        } else {
+          df
+        }
+      },
+      ignoreInit = TRUE
+    )
   })
 }

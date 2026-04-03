@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json.schemas.cloud.google.com/claude-plugin/v1.0",
+  "schemaVersion": "1.0",
+  "name": "golem-plugin",
+  "displayName": "Golem Shiny App Builder",
+  "version": "1.0.0",
+  "description": "Build golem Shiny applications following best practices with Claude Code",
+  "author": {
+    "name": "ThinkR",
+    "url": "https://thinkr.fr"
+  },
+  "keywords": [
+    "golem",
+    "shiny",
+    "r",
+    "shiny-app",
+    "framework"
+  ],
+  "skills": [
+    {
+      "id": "create-golem",
+      "name": "Create Golem App",
+      "description": "Create a new golem Shiny application with proper structure"
+    },
+    {
+      "id": "add-module",
+      "name": "Add Module",
+      "description": "Add a new module to your golem application"
+    },
+    {
+      "id": "add-function",
+      "name": "Add Function",
+      "description": "Add a new utility or factory function to your golem application"
+    },
+    {
+      "id": "check-app",
+      "name": "Check App",
+      "description": "Run R CMD check on your golem application"
+    },
+    {
+      "id": "run-tests",
+      "name": "Run Tests",
+      "description": "Run tests on your golem application"
+    },
+    {
+      "id": "check-ns",
+      "name": "Check for Missing ns()",
+      "description": "Validate that all module input/output IDs are properly namespaced"
+    }
+  ]
+}
